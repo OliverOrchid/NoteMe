@@ -1,0 +1,60 @@
+{%  extends 'learning_logs/base.html'  %}
+{%load bootstrap3%}
+
+{% block header %}
+  <h2>{{topic}}</h2>
+{% endblock header %}
+
+
+
+
+{%  block content  %}
+
+<!-- <p>Topic: {{  topic  }}</p> -->
+<!-- <p>Entries:</p> -->
+
+
+<p>
+  <a href="{%  url 'learning_logs:new_entry' topic.id  %}">
+    <button>添加新的条目</button>
+  </a>
+</p>
+
+
+<!-- <ol> -->
+    
+    {%  for entry in entries  %}
+    <!-- <li> -->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3>
+            {{  entry.date_added | date:'M d, Y H:i'  }}
+            <small>
+              <!-- {{  entry.text | linebreaks  }} -->
+
+        <!-- <p> -->
+              <a href="{%  url 'learning_logs:edit_entry' entry.id  %}">
+              <!-- <button> -->
+                    修改条目
+              <!-- </button> -->
+              </a>
+
+            </small>
+          </h3>
+        </div>
+
+        <div class="panel-body">
+          {{entry.text | linebreaks}}
+        </div>
+      </div><!--panel-->
+        <!-- </p> -->
+
+    <!-- </li> -->
+    {%  empty  %}
+    <!-- <li> -->
+        There are no entries for this topic yet.
+    <!-- </li> -->
+    {%  endfor  %}
+
+<!-- </ol> -->
+{%  endblock content  %}

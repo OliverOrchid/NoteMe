@@ -1,0 +1,38 @@
+{% extends "learning_logs/base.html" %}
+{%load bootstrap3%}
+
+
+{%block header%}
+  <h2>
+    注册账号
+  </h2>
+{%endblock header%}
+
+
+
+{% block content %}
+
+
+<form method="post" 
+    action="{% url 'users:register' %}"
+    class = 'form'>
+
+    {% csrf_token %}
+    
+    {%bootstrap_form form%}
+    <!-- {{ form.as_p }} -->
+
+    <button name="submit"
+      class='btn btn-primary'>
+      注册
+    </button>
+    
+    
+    <input type="hidden"
+        name="next"
+        value="{% url 'learning_logs:index' %}"
+    />
+
+</form>
+
+{% endblock content %}

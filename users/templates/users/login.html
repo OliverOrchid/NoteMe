@@ -1,0 +1,36 @@
+{%  extends "learning_logs/base.html"  %}
+{%load bootstrap3%}
+
+{%block header%}
+  <h2>登录你的账户.</h2>
+
+{%endblock header%}
+
+
+
+{%  block content %}
+
+    <!-- {%  if form.errors %}
+        <p>用户名或密码错误,请重新输入!</p>
+    {%  endif  %} -->
+
+    <form method = "post" 
+      action="{%url 'users:login'%}"
+      class = "form"
+      >
+        
+        {%  csrf_token  %}
+        {%bootstrap_form form%}<!--代替了L14的功能-->
+        <!-- {{  form.as_p  }} -->
+
+
+        {%buttons%}
+        <button name="submit">登录</button>
+        {%endbuttons%}
+
+        <input type="hidden" name="next" 
+          value="{%url 'learning_logs:index'%}"
+          />
+    </form>
+
+{%  endblock content  %}
